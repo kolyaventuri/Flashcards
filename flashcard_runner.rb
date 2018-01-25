@@ -1,13 +1,8 @@
-require "./lib/Card"
 require "./lib/Deck"
 require "./lib/Round"
+require "./lib/CardGenerator"
 
-cards = [ # Array of cards
-  Card.new("What is 5+5?", "10"),
-  Card.new("What is Rachel's favorite animal?", "red panda"),
-  Card.new("What is Mike's middle name?", "nobody knows"),
-  Card.new("What cardboard cutout lives at Turing?", "Justin Bieber")
-]
+cards = CardGenerator.new(ARGV[0] || "cards.txt").cards
 
 deck = Deck.new(cards) # Create the deck
 

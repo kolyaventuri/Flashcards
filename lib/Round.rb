@@ -49,7 +49,7 @@ class Round
     card = current_card # Get the card
     puts "Question: #{card.question}" # Ask question
 
-    answer = gets.chomp # Get answer
+    answer = $stdin.gets.chomp # Get answer
     response = record_guess(answer) # Make guess
 
     puts response.feedback
