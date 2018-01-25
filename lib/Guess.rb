@@ -8,7 +8,7 @@ class Guess
   end
 
   def correct?
-    @response.downcase == @card.answer.downcase
+    @response.downcase == @card.answer.downcase # Don't need to be case sensitive
   end
 
   def feedback
