@@ -5,7 +5,7 @@ require 'minitest/pride'
 require './lib/Card'
 require './lib/Guess'
 
-class CardTest < Minitest::Test
+class GuessTest < Minitest::Test
 
   def test_guess_object_exists
     guess = Guess.new("Guess", nil)
