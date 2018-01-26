@@ -1,0 +1,15 @@
+1)
+	Question: "What is the capital of Alaska?"
+	You answered: "Juneau"
+	The correct answer was: "Juneau"
+	Your answer was: Correct!
+2)
+	Question: "The Viking spacecraft sent back to Earth photographs and reports about the surface of which planet?"
+	You answered: "Left"
+	The correct answer was: "Mars"
+	Your answer was: Incorrect.
+3)
+	Question: "Describe in words the exact direction that is 697.5° clockwise from due north?"
+	You answered: "North west west"
+	The correct answer was: "North north west"
+	Your answer was: Incorrect.

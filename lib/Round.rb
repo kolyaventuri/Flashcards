@@ -38,6 +38,7 @@ class Round
       ask_question
     end
 
+    save_results
     puts "****** Game over! ******"
     puts "You had #{@number_correct} out of #{@deck.cards.length} for a score of #{percent_correct}%"
 
@@ -53,5 +54,28 @@ class Round
     response = record_guess(answer) # Make guess
 
     puts response.feedback
+  end
+
+  def generate_results
+    results = ""
+
+    @guesses.each.with_index do |guess, index|
+      results += "#{index + 1})\n"
+      results += "\tQuestion: \"#{guess.card.question}\"\n"
+      results += "\tYou answered: \"#{guess.response}\"\n"
+      results += "\tThe correct answer was: \"#{guess.card.answer}\"\n"
+      results += "\tYour answer was: #{guess.feedback}"
+      if(index < @guesses.length - 1)
+        results += "\n"
+      end
+    end
+
+    results
+  end
+
+  def save_results
+    saveFilename = Time.now.strftime("results-%Y-%m-%d-%I:%M%P.txt")
+    IO.write(saveFilename, generate_results)
+    saveFilename
   end
 end

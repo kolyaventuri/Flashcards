@@ -83,4 +83,21 @@ class RoundTest < Minitest::Test
     assert_equal "Incorrect.", round.guesses.last.feedback
   end
 
+  def test_round_saves_correctly
+    round = Round.new(@deck)
+
+    round.record_guess("Juneau")
+    round.record_guess("Left")
+    round.record_guess("North west west")
+
+    saveFilename = round.save_results
+
+    saved_file = IO.read(saveFilename)
+    expected_result = IO.read("./test/test_save.txt")
+    
+    assert_equal saved_file, expected_result
+
+    File.unlink(saveFilename)
+  end
+
 end
