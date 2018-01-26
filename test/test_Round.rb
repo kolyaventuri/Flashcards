@@ -11,7 +11,7 @@ class RoundTest < Minitest::Test
 
   def setup
     card_1 = Card.new("What is the capital of Alaska?", "Juneau")
-    card_2 = Card.new("The Viking spacecraft sent back to Earth photographs and reports about the surface of which planet?", "Mars")
+    card_2 = Card.new("The Viking spacecraft sent back to Earth photographs and reports about the surface of which planet?", "Mars", "The red planet")
     card_3 = Card.new("Describe in words the exact direction that is 697.5° clockwise from due north?", "North north west")
     card_array = [card_1, card_2, card_3]
     @deck = Deck.new(card_array)
@@ -36,6 +36,13 @@ class RoundTest < Minitest::Test
   def test_round_has_current_card
     round = Round.new(@deck)
     assert_instance_of Card, round.current_card
+  end
+
+  def test_round_can_ask_for_hint
+    round = Round.new(@deck)
+    assert_equal "There's no hint available.", round.get_hint
+    round.record_guess("Juneau")
+    assert_equal "The red planet", round.get_hint
   end
 
   def test_round_can_record_guess
@@ -94,7 +101,7 @@ class RoundTest < Minitest::Test
 
     saved_file = IO.read(saveFilename)
     expected_result = IO.read("./test/test_save.txt")
-    
+
     assert_equal saved_file, expected_result
 
     File.unlink(saveFilename)

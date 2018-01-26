@@ -19,8 +19,8 @@ class CardGenerator
     lines = IO.readlines(filename)
     lines.each do |line|
       line.strip! # Get rid of white space on either end
-      inputs = line.split("?,") # Split at the end of the question
-      new_card = Card.new(inputs[0] + "?", inputs[1]) # Strip will have removed the ? so we have to add it back on
+      inputs = line.split(",") # Split at the end of the question/answer
+      new_card = Card.new(inputs[0], inputs[1], inputs[2] || nil)
       @cards.push(new_card)
     end
   end

@@ -44,16 +44,32 @@ class Round
 
   end
 
-  def ask_question
-    puts "This is card number #{@current_index + 1} of #{@deck.cards.length}"
+  def ask_question(skip_print_card_num=false)
+    if !skip_print_card_num then
+      puts "This is card number #{@current_index + 1} of #{@deck.cards.length}"
+    end
 
     card = current_card # Get the card
     puts "Question: #{card.question}" # Ask question
 
     answer = $stdin.gets.chomp # Get answer
-    response = record_guess(answer) # Make guess
+    if answer.downcase.strip == "hint" then
+      puts get_hint
+      ask_question(true)
+    else
+      response = record_guess(answer) # Make guess
+      puts response.feedback
+    end
+  end
 
-    puts response.feedback
+  def get_hint
+    card = current_card
+
+    if card.hint?
+      card.hint
+    else
+      "There's no hint available."
+    end
   end
 
   def generate_results

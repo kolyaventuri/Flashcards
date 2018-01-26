@@ -25,6 +25,17 @@ class CardGeneratorTest < Minitest::Test
     assert_instance_of String, card.answer
   end
 
+  def test_card_generator_cards_can_have_hints
+    cardGenerator = CardGenerator.new('cards.txt')
+    card = cardGenerator.cards.first
+    card2 = cardGenerator.cards[1]
+
+    assert_nil card.hint
+
+    refute_nil card2.hint
+    assert_instance_of String, card2.hint
+  end
+
   def test_card_generator_cards_have_been_trimmed
     cardGenerator = CardGenerator.new('cards.txt')
     card = cardGenerator.cards.first
